@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation | AutoToy: Self-Driving Toy Car</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2E86AB;
+            --secondary-color: #084C61;
+            --accent-color: #FFC857;
+            --light-color: #F7F9FB;
+            --dark-color: #323031;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.5rem 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Main Content Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
+
+        /* Documentation Styles */
+        .docs-container {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 2rem;
+        }
+
+        .docs-sidebar {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 2rem;
+            height: max-content;
+        }
+
+        .docs-sidebar h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .docs-sidebar ul {
+            list-style: none;
+        }
+
+        .docs-sidebar li {
+            margin-bottom: 0.5rem;
+        }
+
+        .docs-sidebar a {
+            color: var(--dark-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .docs-sidebar a:hover {
+            color: var(--primary-color);
+        }
+
+        .docs-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .docs-section {
+            margin-bottom: 3rem;
+        }
+
+        .docs-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .docs-section h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .docs-section h3 {
+            margin: 1.5rem 0 1rem;
+            color: var(--secondary-color);
+        }
+
+        .docs-section p,
+        .docs-section ul,
+        .docs-section ol {
+            margin-bottom: 1rem;
+        }
+
+        .docs-section ul,
+        .docs-section ol {
+            padding-left: 2rem;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background-color: #f5f5f5;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Expandable Content */
+        .expandable {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .expandable-header {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .expandable-header h3 {
+            margin: 0;
+        }
+
+        .expandable-content {
+            padding: 0 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+
+        .expandable.active .expandable-content {
+            padding: 1rem;
+            max-height: 1000px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            border: 1px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .docs-container {
+                grid-template-columns: 1fr;
+            }
+
+            .docs-sidebar {
+                position: static;
+            }
+
+            .nav-links li {
+                margin-left: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">AutoToy</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="docs.html">Documentation</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <h1 class="page-title">Project Documentation</h1>
+
+            <div class="docs-container">
+                <!-- Sidebar Navigation -->
+                <aside class="docs-sidebar">
+                    <h3>Contents</h3>
+                    <ul>
+                        <li><a href="#overview">Project Overview</a></li>
+                        <li><a href="#components">Hardware Components</a></li>
+                        <li><a href="#software">Software Architecture</a></li>
+                        <li><a href="#setup">Setup Instructions</a></li>
+                        <li><a href="#code">Code Examples</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </aside>
+
+                <!-- Documentation Content -->
+                <div class="docs-content">
+                    <!-- Overview Section -->
+                    <section id="overview" class="docs-section">
+                        <h2>Project Overview</h2>
+                        <p>The AutoToy project is a DIY self-driving toy car platform that demonstrates fundamental
+                            principles of autonomous vehicles. Using affordable off-the-shelf components, this project
+                            implements computer vision, sensor fusion, and machine learning to create a fully autonomous
+                            navigation system.</p>
+
+                        <p>The goal of this project is to create an accessible platform for learning about robotics,
+                            computer vision, and autonomous navigation algorithms in a hands-on way. The modular design
+                            allows for easy customization and expansion of capabilities.</p>
+                    </section>
+
+                    <!-- Components Section -->
+                    <section id="components" class="docs-section">
+                        <h2>Hardware Components</h2>
+                        <p>The AutoToy platform is built using the following components:</p>
+
+                        <h3>Core Components</h3>
+                        <ul>
+                            <li><strong>Computing Unit:</strong> Raspberry Pi 4 (4GB RAM)</li>
+                            <li><strong>Motor Controller:</strong> L298N Dual H-Bridge</li>
+                            <li><strong>Power Supply:</strong> 7.4V LiPo Battery</li>
+                            <li><strong>Chassis:</strong> 4WD Robot Car Chassis Kit</li>
+                        </ul>
+
+                        <h3>Sensors</h3>
+                        <ul>
+                            <li><strong>Vision:</strong> Raspberry Pi Camera Module v2</li>
+                            <li><strong>Proximity:</strong> HC-SR04 Ultrasonic Sensors (×2)</li>
+                            <li><strong>Line Following:</strong> TCRT5000 IR Sensors (×3)</li>
+                            <li><strong>IMU:</strong> MPU6050 (Accelerometer + Gyroscope)</li>
+                        </ul>
+
+                        <h3>Optional Components</h3>
+                        <ul>
+                            <li><strong>Display:</strong> 0.96" OLED SSD1306</li>
+                            <li><strong>Communication:</strong> ESP8266 WiFi Module</li>
+                            <li><strong>GPS:</strong> NEO-6M GPS Module</li>
+                        </ul>
+                    </section>
+
+                    <!-- Software Section -->
+                    <section id="software" class="docs-section">
+                        <h2>Software Architecture</h2>
+                        <p>The AutoToy software stack consists of several modules organized in a layered architecture:
+                        </p>
+
+                        <h3>Perception Layer</h3>
+                        <p>Handles all sensor input processing:</p>
+                        <ul>
+                            <li>Computer vision pipeline (OpenCV)</li>
+                            <li>Sensor data fusion</li>
+                            <li>Environmental mapping</li>
+                        </ul>
+
+                        <h3>Decision Layer</h3>
+                        <p>Processes sensor data to make navigation decisions:</p>
+                        <ul>
+                            <li>Path planning algorithms</li>
+                            <li>Obstacle avoidance</li>
+                            <li>Machine learning models (TensorFlow Lite)</li>
+                        </ul>
+
+                        <h3>Control Layer</h3>
+                        <p>Translates decisions into motor commands:</p>
+                        <ul>
+                            <li>Motor PWM control</li>
+                            <li>PID controllers for precise movement</li>
+                            <li>Safety override systems</li>
+                        </ul>
+
+                        <div class="code-block">
+                            <pre>
+# High-level system architecture diagram
+
+[Camera Module] → [Image Processing] → [Object Detection]
+       ↓                                       ↓
+[Ultrasonic Sensors] → [Sensor Fusion] ← [Path Planning]
+       ↓                     ↓                 ↓
+[Line Sensors] → [Environment Mapping] → [Decision Making]
+                            ↓
+                    [Motor Controllers]
+                            ↓
+                    [Wheels/Movement]</pre>
+                        </div>
+                    </section>
+
+                    <!-- Setup Section -->
+                    <section id="setup" class="docs-section">
+                        <h2>Setup Instructions</h2>

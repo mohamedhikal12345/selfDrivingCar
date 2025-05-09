@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | AutoToy: Self-Driving Toy Car</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2E86AB;
+            --secondary-color: #084C61;
+            --accent-color: #FFC857;
+            --light-color: #F7F9FB;
+            --dark-color: #323031;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.5rem 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Main Content Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .photo-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .photo-item:hover .photo-caption {
+            transform: translateY(0);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links li {
+                margin-left: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">AutoToy</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="docs.html">Documentation</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <h1 class="page-title">Gallery & Features</h1>
+
+            <!-- Features Section -->
+            <section>
+                <h2>Key Features</h2>
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">👁️</div>
+                        <h3>Computer Vision</h3>
+                        <p>Equipped with advanced camera sensors for real-time obstacle detection and environment
+                            mapping.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3>AI Path Planning</h3>
+                        <p>Machine learning algorithms calculate optimal routes and adjust to changing conditions.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📡</div>
+                        <h3>Ultrasonic Sensing</h3>
+                        <p>Precision distance sensors provide additional environmental awareness for collision
+                            avoidance.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Motor Control</h3>
+                        <p>Precise PWM control for smooth acceleration, deceleration, and turning capabilities.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Photo Gallery -->
+            <section>
+                <h2>Photo Gallery</h2>
+                <div class="photo-gallery">
+                    <div class="photo-item">
+                        <img src="images/1.jpg" alt="Front view of the AutoToy car showing camera and sensors">
+                        <div class="photo-caption">
+                            <h3>Front View</h3>
+                            <p>The front-facing camera provides the primary vision input for navigation.</p>
+                        </div>
+                    </div>
+
+                    <div class="photo-item">
+                        <img src="images/2.png" alt="Top-down view of AutoToy showing the main circuit board">
+                        <div class="photo-caption">
+                            <h3>Top View</h3>
+                            <p>The Raspberry Pi and controller boards are mounted on custom chassis.</p>
+                        </div>
+                    </div>
+
+                    <div class="photo-item">
+                        <img src="images/4.jpg" alt="Close-up of ultrasonic sensor module">
+                        <div class="photo-caption">
+                            <h3>Sensor Detail</h3>
+                            <p>Ultrasonic sensors provide precise distance measurements for obstacle avoidance.</p>
+                        </div>
+                    </div>
+
+                    <div class="photo-item">
+                        <img src="images/1.jpg" alt="AutoToy navigating a test course">
+                        <div class="photo-caption">
+                            <h3>In Action</h3>
+                            <p>The AutoToy successfully navigating a test course with various obstacles.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 AutoToy Project. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
